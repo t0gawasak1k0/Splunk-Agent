@@ -17,6 +17,18 @@
 - 所有外部调用必须有 timeout、重试策略、并发限制和清晰的错误分类。
 - 代码必须可运行：提供依赖、配置示例、最小启动说明、基础测试用例。
 
+请按以下 repo 结构生成代码（可调整但需说明理由）：
+
+/splunk_agent
+  /app
+    /api                 # FastAPI 路由与请求/响应 schema
+    /domain              # State、Action、AlertSpec、ErrorType 等纯模型
+    /tools               # SplunkToolClient（REST/SDK adapter）、cost guard、redaction
+    /orchestrator        # LangGraph 图、节点实现、路由函数、checkpoint 接口
+    /observability       # logging、otel、metrics
+    /tests               # pytest：unit + e2e（mock splunk）
+    /config              # settings（env vars）、示例配置
+  README.md
 
 ## 0. 设计目标
 
